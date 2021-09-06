@@ -3,7 +3,7 @@
 A quickfix for rdkit.Chem.Draw.MolToMPL to save drawings as **vector graphics**.
 
 
-![alt text](images/example.png "An example" | width=600)
+![alt text](images/example.png "An example")
 
 ## What is this for?
 
