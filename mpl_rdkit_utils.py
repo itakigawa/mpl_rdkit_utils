@@ -194,7 +194,6 @@ def DrawMolToMPL(
             xh = h * gr
             ax.set_xlim(xcent - xh / 2, xcent + xh / 2)
             ax.set_ylim(y_min, y_max)
-        ax.set_xlim()
     ax.set_aspect("equal")
     ax.set_axis_off()
     return (x_min, x_max), (y_min, y_max)
