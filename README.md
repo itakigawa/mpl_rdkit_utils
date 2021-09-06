@@ -2,7 +2,7 @@
 
 A quickfix for rdkit.Chem.Draw.MolToMPL to save drawings as **vector graphics**.
 
-<img src="images/example.png" width="800">
+<img src="images/example.png" width="600">
 
 
 ## What is this for?
@@ -15,7 +15,7 @@ I had a problem when I tried to output RDKit molecular graphics in a file. If I 
 
 Internally *DrawMolToMPL* draw a molecule in the [0,1]x[0,1] area, and returns (xlim, ylim) representing its bounding box. So you can work using this information as you like.
 
-<img src="images/output.png" width="700">
+<img src="images/output.png" width="600">
 
 ## TODO
 
