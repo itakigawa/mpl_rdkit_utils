@@ -2,8 +2,8 @@
 
 A quickfix for rdkit.Chem.Draw.MolToMPL to save drawings as **vector graphics**.
 
+<img src="images/example.png" width="800">
 
-![alt text](images/example.png "An example")
 
 ## What is this for?
 
@@ -15,11 +15,11 @@ I had a problem when I tried to output RDKit molecular graphics in a file. If I 
 
 Internally *DrawMolToMPL* draw a molecule in the [0,1]x[0,1] area, and returns (xlim, ylim) representing its bounding box. So you can work using this information as you like.
 
-![alt text](images/output.png "output")
+<img src="images/output.png" width="700">
 
 ## TODO
 
 This is a simple quickfix from the original [rdkit.Chem.Draw.MolToMPL](https://github.com/rdkit/rdkit/blob/58e6743df02c004b5c719c044a2641d719a2e7df/rdkit/Chem/Draw/__init__.py#L331), but this one needs further improvements compared to PNG or SVG-based outputs??
 
-![alt text](images/MolToMPL.png "TODO")
+<img src="images/MolToMPL.png" width="600">
 
