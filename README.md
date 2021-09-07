@@ -23,7 +23,7 @@ This is a simple quickfix from the original [rdkit.Chem.Draw.MolToMPL](https://g
 
 rdkit.Chem.Draw.MolToMPL just used [rdkit.Chem.Draw.MolDrawing](https://github.com/rdkit/rdkit/blob/58e6743df02c004b5c719c044a2641d719a2e7df/rdkit/Chem/Draw/MolDrawing.py#L77), but _moltoimg or _moltoSVG calls drawMolecule of [rdkit.Chem.Draw.MolDraw2DSVG](https://github.com/rdkit/rdkit/blob/69b143edd059612c2f28ad898fa2d87dc1525e6f/Code/GraphMol/MolDraw2D/MolDraw2DSVG.cpp) or [rdkit.Chem.Draw.MolDraw2DCairo](https://github.com/rdkit/rdkit/blob/69b143edd059612c2f28ad898fa2d87dc1525e6f/Code/GraphMol/MolDraw2D/MolDraw2DCairo.cpp) object that is implemented in C++. Both are subclass of [MolDraw2D](https://github.com/rdkit/rdkit/blob/69b143edd059612c2f28ad898fa2d87dc1525e6f/Code/GraphMol/MolDraw2D/MolDraw2D.cpp) where drawMolecule seemed actually processed.
 
-At least, it would be nice to implement [MolDraw2D::getAtomSymbol](https://github.com/rdkit/rdkit/blob/69b143edd059612c2f28ad898fa2d87dc1525e6f/Code/GraphMol/MolDraw2D/MolDraw2D.cpp#L3991) in *rdkit.Chem.Draw.MolDrawing* to output, for example, NH2 as NH<sub>2</sub>.
+At least, it would be nice to implement [MolDraw2D::getAtomSymbol](https://github.com/rdkit/rdkit/blob/69b143edd059612c2f28ad898fa2d87dc1525e6f/Code/GraphMol/MolDraw2D/MolDraw2D.cpp#L3991) in *rdkit.Chem.Draw.MolDrawing* to output, for example, NH2 as NH<sub>2</sub>. It looks that codes around [here](https://github.com/rdkit/rdkit/blob/58e6743df02c004b5c719c044a2641d719a2e7df/rdkit/Chem/Draw/MolDrawing.py#L412) in *MolDrawing* is for this, but for some reasons, this wasn't applied to drawings in my environment (ubuntu over docker) apparently...
 
 <img src="images/MolToMPL.png" width="600">
 
