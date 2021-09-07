@@ -11,7 +11,7 @@ It generates a molecular drawing of RDKit Mol objects in a matplotlib line graph
 
 I had a problem when I tried to output RDKit molecular graphics in a file. If I convert it into a PIL image by *rdkit.Chem.Draw.MolToImage*, then the output quality was in a low resolution because it's a pixel image. But, SVG-based drawings (like *rdkit.Chem.Draw.rdMolDraw2D.MolDraw2DSVG*) cannot simply be saved in a file. In particular, it cannot work with matplotlib subplots. 
 
-## Examples
+## How to use this?
 
 See [example.ipynb](example.ipynb).
 
