@@ -46,8 +46,14 @@ class MPLCanvas(CanvasBase):
         import re
 
         pos = self.rescalePt(pos)
-        canvas = self._axes
+
+        ax = self._axes
+        fig = self._figure
+
+        text = re.sub(r"<sub>(.*?)</sub>", r"$_{\1}$", text)
+        text = re.sub(r"<sup>(.*?)</sup>", r"$^{\1}$", text)
         text = re.sub(r"<.*?>", "", text)
+
         orientation = kwargs.get("orientation", "E")
         halign = "center"
         valign = "center"
@@ -60,9 +66,28 @@ class MPLCanvas(CanvasBase):
         elif orientation == "N":
             valign = "bottom"
 
-        annot = canvas.text(
-            pos[0],
-            pos[1],
+        dx, dy = 0, 0
+        if orientation in ["E", "W"]:
+            c = ax.text(
+                0.5,
+                0.5,
+                text[0],
+                weight=font.weight,
+                size=self.font.size,
+                family=self.font.face,
+            )
+            bbox = c.get_window_extent().transformed(ax.transData.inverted())
+            c.remove()
+            if orientation == "E":
+                dx = -bbox.width / 2
+                dy = 0
+            elif orientation == "W":
+                dx = bbox.width / 2
+                dy = 0
+
+        annot = ax.text(
+            pos[0] + dx,
+            pos[1] + dy,
             text,
             color=color,
             verticalalignment=valign,
@@ -73,7 +98,7 @@ class MPLCanvas(CanvasBase):
             bbox=dict(boxstyle="square,pad=0.0", fc="w", lw=0),
         )
 
-        self._figure.canvas.draw()
+        fig.canvas.draw()
         bb = annot.get_window_extent()
         bb2 = bb.transformed(self._axes.transData.inverted())
         self.points.append([bb2.x0, bb2.y0])
@@ -82,7 +107,7 @@ class MPLCanvas(CanvasBase):
         try:
             bb = annot.get_window_extent()
             w, h = bb.width, bb.height
-            tw, th = canvas.transData.inverted().transform((w, h))
+            tw, th = ax.transData.inverted().transform((w, h))
         except AttributeError:
             tw, th = 0.1, 0.1  # <- kludge
         return (tw, th, 0)
