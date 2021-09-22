@@ -15,7 +15,7 @@ I had a problem when I tried to output RDKit molecular graphics into a PDF file.
 
 <img src="images/mpl_subplots.png" width="600">
 
-The matplotlib subplots provides flexible and powerful layouts for multiple graphics, and we can enjoy its significant benefit by using *DrawMolToMPL*. Even for a simple grid layout, it can be useful. A RDKit's practice would be something like this
+matplotlib.pyplot.subplots provides flexible and powerful layouts for multiple graphics, and we can enjoy its significant benefit by using *DrawMolToMPL*. Even for a simple grid layout, it can be useful. A RDKit's practice would be something like this
 
 <img src="images/rdkit_save.png" width="600">
 
