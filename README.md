@@ -19,7 +19,7 @@ A RDKit's practice would be something like this
 
 <img src="images/rdkit_save.png" width="600">
 
-and the output is saved as [PNG](out_examples/rdkit_out.png) (a raster image) or [SVG](out_examples/rdkit_out.svg) (a vector image). It usually requres a converter such as rsvg-convert and cairosvg (or Illustrator, Inkscape, etc) to get a vector graphic in PDF or EPS.
+and the output is saved as [PNG](out_examples/rdkit_out.png) (a raster image) or [SVG](out_examples/rdkit_out.svg) (a vector image). It usually requires a converter such as rsvg-convert and cairosvg (or Illustrator, Inkscape, etc) to get a vector graphic in PDF or EPS. Check out [out_examples](out_examples).
 
 ```bash
 $ cairosvg rdkit_out.svg -o rdkit_cairosvg.pdf
