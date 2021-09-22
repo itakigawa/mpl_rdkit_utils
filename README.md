@@ -9,17 +9,17 @@ A quickfix for *rdkit.Chem.Draw.MolToMPL* to save drawings as **vector graphics*
 
 *DrawMolToMPL* generates a drawing of *rdkit.Chem.rdchem.Mol* objects by matplotlib line graphics, and thus it can be saved as a **vector image**.
 
-I had a problem when I tried to output RDKit molecular graphics into a PDF file. If I convert it into a PIL image by *rdkit.Chem.Draw.MolToImage* for matplotlib subplots, then the output quality was in a low resolution because it's a pixel image. But, apparently SVG-based drawings (like *rdkit.Chem.Draw.rdMolDraw2D.MolDraw2DSVG*) cannot simply be saved to a PDF file. Furthermore, it cannot work with matplotlib subplots, and it's frustrating when we want to draw many pairs or sets of molecules in a single panel.
+I had a problem when I tried to output RDKit molecular graphics into a PDF or EPS file. If I convert it into a PIL image by *rdkit.Chem.Draw.MolToImage* for matplotlib subplots, then the output quality was in a low resolution because it's a pixel image. But, apparently SVG-based drawings (like *rdkit.Chem.Draw.rdMolDraw2D.MolDraw2DSVG*) cannot simply be saved to a PDF file. Furthermore, it cannot work with matplotlib subplots, and it's frustrating when we want to draw many pairs or sets of molecules in a single panel.
 
 *DrawMolToMPL* fixes this issue to work with matplotlib subplots. The following example successfully generates a vector-graphcis output like [out.pdf](out_examples/out.pdf).
 
 <img src="images/mpl_subplots.png" width="600">
 
-matplotlib.pyplot.subplots provides flexible and powerful layouts for multiple graphics, and we can enjoy its significant benefit by using *DrawMolToMPL*. Even for a simple grid layout, it can be useful. A RDKit's practice would be something like this
+*matplotlib.pyplot.subplots* provides flexible and powerful layouts for multiple graphics, and we can enjoy its significant benefit by using *DrawMolToMPL*. Even for a simple grid layout, it can be useful. A RDKit's practice would be something like this
 
 <img src="images/rdkit_save.png" width="600">
 
-and the output is saved as [PNG](out_examples/rdkit_out.png) (a raster image) or [SVG](out_examples/rdkit_out.svg) (a vector image). It usually requires a converter such as rsvg-convert and cairosvg (or Illustrator, Inkscape, etc) to get a vector graphic in PDF or EPS. Check out [out_examples](out_examples).
+and the output is saved as [PNG](out_examples/rdkit_out.png) (a raster image) or [SVG](out_examples/rdkit_out.svg) (a vector image). To get the output in PDF, it further requires a converter such as rsvg-convert and cairosvg (or Illustrator, Inkscape, etc), which is annoying. Check out [out_examples](out_examples).
 
 ```bash
 $ cairosvg rdkit_out.svg -o rdkit_cairosvg.pdf
