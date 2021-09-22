@@ -57,37 +57,49 @@ class MPLCanvas(CanvasBase):
         orientation = kwargs.get("orientation", "E")
         halign = "center"
         valign = "center"
-        if orientation == "E":
-            halign = "left"
-        elif orientation == "W":
-            halign = "right"
-        elif orientation == "S":
-            valign = "top"
-        elif orientation == "N":
-            valign = "bottom"
+        x, y = pos
 
-        dx, dy = 0, 0
-        if orientation in ["E", "W"]:
+        if orientation != "C":
             c = ax.text(
-                0.5,
-                0.5,
+                x,
+                y,
                 text[0],
+                verticalalignment="baseline",
+                horizontalalignment=halign,
                 weight=font.weight,
                 size=self.font.size,
                 family=self.font.face,
             )
-            bbox = c.get_window_extent().transformed(ax.transData.inverted())
+            bb = c.get_window_extent(fig.canvas.get_renderer())
+            (x0, y0), (x1, y1) = ax.transData.inverted().transform(bb)
+            w = x1 - x0
+            h = y1 - pos[1]
             c.remove()
+
+            alpha = 0.0
+
             if orientation == "E":
-                dx = -bbox.width / 2
-                dy = 0
+                halign = "left"
+                valign = "center"
+                x = pos[0] - w / 2.0 + alpha * w
+                y = pos[1] #- (pos[1] - y0) / 2.0
             elif orientation == "W":
-                dx = bbox.width / 2
-                dy = 0
+                halign = "right"
+                valign = "center"
+                x = pos[0] + w / 2.0 - alpha * w
+                y = pos[1] #- (pos[1] - y0) / 2.0
+            elif orientation == "N":
+                valign = "bottom"
+                x = pos[0]
+                y = y0 + alpha * h
+            elif orientation == "S":
+                valign = "top"
+                x = pos[0]
+                y = pos[1] + (pos[1] - y0) / 2.0 - alpha * h
 
         annot = ax.text(
-            pos[0] + dx,
-            pos[1] + dy,
+            x,
+            y,
             text,
             color=color,
             verticalalignment=valign,
@@ -95,7 +107,7 @@ class MPLCanvas(CanvasBase):
             weight=font.weight,
             size=self.font.size,
             family=self.font.face,
-            bbox=dict(boxstyle="square,pad=0.0", fc="w", lw=0),
+            bbox=dict(boxstyle="square,pad=0", fc="w", lw=0),
         )
 
         fig.canvas.draw()
