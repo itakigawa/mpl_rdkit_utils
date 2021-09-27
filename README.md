@@ -28,6 +28,12 @@ $ rsvg-convert -f pdf -o rdkit_librsvg.pdf rdkit_out.svg
 
 ## How to use this?
 
+First, download [mpl_rdkit_utils.py](mpl_rdkit_utils.py) by doing something like 
+
+```bash
+$ curl -O https://raw.githubusercontent.com/itakigawa/mpl_rdkit_utils/main/mpl_rdkit_utils.py
+```
+
 See [example.ipynb](example.ipynb).
 
 ## To work with matplotlib subplots
