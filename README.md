@@ -28,10 +28,16 @@ $ rsvg-convert -f pdf -o rdkit_librsvg.pdf rdkit_out.svg
 
 ## How to use this?
 
-Just download [mpl_rdkit_utils.py](mpl_rdkit_utils.py) and import it.
+Just download [mpl_rdkit_utils.py](mpl_rdkit_utils.py) by 
 
 ```bash
 $ curl -O https://raw.githubusercontent.com/itakigawa/mpl_rdkit_utils/main/mpl_rdkit_utils.py
+```
+
+and import it like
+
+```python
+from mpl_rdkit_utils import DrawMolToMPL
 ```
 
 For complete examples, see [example.ipynb](example.ipynb).
